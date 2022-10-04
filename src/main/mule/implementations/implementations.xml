@@ -35,7 +35,7 @@ payload map(item,index) -> {
 		<ee:transform doc:name="Transform Message" doc:id="5ff0e8a6-0311-4255-bc15-82a9b16dda41" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
-output application/xml
+output application/json
 ---
 payload]]></ee:set-payload>
 			</ee:message>
