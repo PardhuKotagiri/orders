@@ -1,0 +1,90 @@
+#%RAML 1.0 DataType
+type: array
+items:
+  type: object
+  properties:
+    id:
+      required: true
+      type: string
+      example: "123"
+    name:
+      required: true
+      type: string
+      example: "SalesOrder-569230458"
+    description:
+      required: true
+      type: string
+      example: "SalesOrder-569230458"
+    orderNumber:
+      required: true
+      type: string
+      example: "569230458"
+    requestedStartDate:
+      required: true
+      type: string
+      example: "10-09-2022"
+    salesOrderType:
+      type: array
+      items:
+          type: string
+          example: "INITIAL"
+    salesOrderStatus:
+      type: array
+      items:
+          type: string
+          example: "CREATED"
+    orderurrency:
+      required: true
+      type: string
+      example: "AUD"
+    orderLineItems:
+      type: array
+      items:
+        type: object
+        properties:
+          ordId:
+            required: true
+            type: string
+            example: "15478"
+          ordDescription:
+            required: true
+            type: string
+            example: "Puma shoes"
+          orderedQuantity:
+            required: true
+            type: number
+            example: 1
+          unitPriceAmount:
+            required: true
+            type: number
+            example: 15692
+          totalPriceAmount:
+             required: true
+             type: number
+             example: 15692
+          quantityOrderedUOM:
+            required: true
+            type: string
+            example: "UNIT"
+          orderProductNumber:
+             required: true
+             type: string
+             example: "XA561294"
+
+
+
+
+
+
+            
+
+          
+
+
+
+            
+
+
+
+
+      

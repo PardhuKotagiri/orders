@@ -1,0 +1,30 @@
+%dw 2.0
+
+type auto_68676dfb_bded_4738_8369_053366ff442f_Input_Attributes = {|
+  clientCertificate?: {|
+    publicKey?: {|  |}, 
+    "type"?: String, 
+    encoded?: Binary
+  |}, 
+  headers: {|
+    clientId?: String, 
+    clientSecret?: String
+  |}, 
+  listenerPath: String, 
+  method: String, 
+  queryParams: {|
+    orderId?: String, 
+    externalId?: String, 
+    customerId?: String
+  |}, 
+  queryString: String, 
+  relativePath: String, 
+  remoteAddress: String, 
+  requestPath: String, 
+  requestUri: String, 
+  scheme: String, 
+  uriParams: {|  |}, 
+  version: String, 
+  localAddress: String
+|}
+

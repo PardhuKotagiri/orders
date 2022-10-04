@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:shopify="http://www.mulesoft.org/schema/mule/shopify" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/shopify http://www.mulesoft.org/schema/mule/shopify/current/mule-shopify.xsd">
+	<sub-flow name="orders-post" doc:id="8cbd6a30-ff15-46a6-9c3d-1ff946c8394b" >
+		<ee:transform doc:name="Transform Message" doc:id="d4790f4d-6f11-4fc3-a9ae-056c9856e642" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+payload map(item,index) -> {
+	id__c: item.id,
+	name__c: item.name,
+	description__c: item.description,
+	orderNumber__c: item.orderNumber,
+	requestedStartDate__c: item.requestedStartDate,
+	salesOrderType__c: item.salesOrderType,
+	salesOrderStatus__c: item.salesOrderStatus,
+	orderurrency__c: item.orderurrency,
+    ordId__c: item..ordId[0],
+    ordDescription__c: item..ordDescription[0],
+	orderedQuantity__c: item..orderedQuantity[0],
+    unitPriceAmount__c: item..totalPriceAmount[0],	
+    totalPriceAmount__c: item..totalPriceAmount[0],
+    quantityOrderedUOM__c: item..quantityOrderedUOM[0],
+    orderProductNumber__c: item..orderProductNumber[0]	
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<salesforce:create doc:name="Create" doc:id="d934a3cb-c612-4213-8ac6-52f69421e49d" config-ref="Salesforce_Config" type="#['order__c']"/>
+		<ee:transform doc:name="Transform Message" doc:id="5ff0e8a6-0311-4255-bc15-82a9b16dda41" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+	<sub-flow name="orders-get" doc:id="68676dfb-bded-4738-8369-053366ff442f" >
+		<salesforce:query doc:name="Query" doc:id="9fa63aa4-a6fa-43f5-8eca-2225849877f8" config-ref="Salesforce_Config">
+			<salesforce:salesforce-query ><![CDATA[select id__c,name__c,description__c,orderNumber__c,requestedStartDate__c,salesOrderType__c,salesOrderStatus__c,orderurrency__c,ordId__c,ordDescription__c,orderedQuantity__c,unitPriceAmount__c,totalPriceAmount__c,quantityOrderedUOM__c,orderProductNumber__c From order__c]]></salesforce:salesforce-query>
+		</salesforce:query>
+		<ee:transform doc:name="Transform Message" doc:id="14e8b411-fb9c-46de-a88b-fce22f1a085a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>

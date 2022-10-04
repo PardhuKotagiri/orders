@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<error-handler name="global-error-handlingError_Handler" doc:id="464287f6-f0cd-4cef-80d8-fc10fae90681" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="c64ff271-827d-41cb-a81d-4e4a5c787936" type="APIKIT:BAD_REQUEST">
+			<ee:transform doc:name="Transform Message" doc:id="767a6395-2fba-4de7-8fe7-03ce56588087" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "400",
+	message: "Bad Request",
+	descriptipon: "The 400 (Bad Request) status code indicates that 
+the server cannot or will not process the request due to something 
+that is perceived to be a client error (e.g., malformed request 
+syntax, invalid request message framing, or deceptive request 
+routing)"
+
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="9352e6b6-617f-40da-8dad-2a02c93ad91a" type="APIKIT:METHOD_NOT_ALLOWED">
+			<ee:transform doc:name="Transform Message" doc:id="0877579b-d333-4215-a1fa-65714a4cc870" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"code": "405",
+    "message": "Method Not Allowed",
+    "description": "The method specified in the request is not allowed 
+for this resource"
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="6329f7df-54b4-47d7-9b7b-1f0e6b9aa240" type="APIKIT:NOT_ACCEPTABLE">
+			<ee:transform doc:name="Transform Message" doc:id="aaedb4e1-3c99-4254-a6d1-3ba96b9131e7" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"code": "406",
+ "message": " Not Acceptable",
+ "description": "The resource identified by the request is not 
+capable of generating response entities according to the request 
+accept headers"
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="69e0c672-e531-4145-917f-97f3f4501564" type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+			<ee:transform doc:name="Transform Message" doc:id="b40901a6-58a6-49bc-a1dd-ffa62ddd7793" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	 "code": "415",
+ "message": "Unsupported media type",
+ "description": "The server is refusing to service the request 
+because the entity of the request is in a format not supported by 
+the requested resource for the requested method"
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="20af34a2-97f2-4ca9-9c88-8b701671e17b" type="APIKIT:NOT_IMPLEMENTED">
+			<ee:transform doc:name="Transform Message" doc:id="44f11185-287b-4716-8fcc-b41afbc27fa6" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"code": "501",
+	"message": "Not Implemented",
+	"description": "the method used to fulfill the request does not work or was not found on the server"
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="20046228-9e33-4526-bbe6-dc4bff8ab27d" type="APIKIT: INTERNAL_SERVER_ERROR">
+			<ee:transform doc:name="Transform Message" doc:id="81aa6fea-0f46-42b7-85a1-6e4675d6d4cc" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"code": "500",
+ "message": " Internal server error ",
+ "description": "The server encountered an unexpected condition 
+which prevented it from fulfilling the request",
+	
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+		</on-error-propagate>
+	</error-handler>
+</mule>

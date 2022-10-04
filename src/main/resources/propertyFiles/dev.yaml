@@ -1,0 +1,13 @@
+http:
+  host: "![awnhNNu967DP0rtkxJqbug==]"
+  port: "![E55v+i63UfQ=]"
+
+sfdc:
+  userName: "![sQEWJb1jL6Dcfm4nK0dJx7Y+MChiesoA]"
+  password: "![a2TX3UecGDzdsTo6obTjvg==]"
+  securityToken: "![0m6rmUwyB+A3woTG/WS8635FZcfiHwrtgJjzrMBtLfg=]"
+  url: "[2u5VtYK3ZAwMRyuW5LzAXpd74sUiyTOVoBQx1ZnTd2Tj7avRfm4aWy3Y6uaXNu62ss1GU2qmuYY=]"
+
+security:
+  key: "![qOdJ7KoXY00eJIuOgOTQkMe978AIHqCd]"
+  

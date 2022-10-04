@@ -1,0 +1,14 @@
+#%RAML 1.0 Trait
+queryParameters:
+      orderId:
+        required: false
+        type: string 
+        description: Lookup by the Salesforce internal identifier
+      externalId:
+        required: false
+        type: string
+        description: Lookup by global order identifier
+      customerId:
+        required: false
+        type: string
+        description: Get orders for a specific customer

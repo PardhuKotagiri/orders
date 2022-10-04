@@ -1,0 +1,60 @@
+#%RAML 1.0
+title: qu-sys-orders-sfdc-api
+description: This API is to insert and fetch the order details from Salesforce
+version: 1.0.0
+uses:
+  commonDataRef: /common/commonData.raml
+securedBy:
+  - commonDataRef.basicAuth
+
+/orders:
+  description: Base resource for managing sales orders
+  get:
+    is: [commonDataRef.queryParams,commonDataRef.errResponses,commonDataRef.orderIdHeaders]
+    responses:
+      200:
+        body:
+          application/json:
+            type: commonDataRef.orderGetResp
+  post:
+    is: [commonDataRef.errResponses]
+    body:
+      application/json:
+        type: commonDataRef.order
+    responses:
+      201:
+        body:
+          application/json:
+            type: commonDataRef.orderPostResp
+  /{orderId}:
+    get:
+      is: [commonDataRef.errResponses,commonDataRef.orderIdHeaders]
+      responses:
+        200:
+          body:
+            application/json:
+              type: commonDataRef.orderGetResp
+    patch:
+      is: [commonDataRef.errResponses,commonDataRef.orderIdHeaders]
+      body:
+        application/json:
+          type: commonDataRef.order
+      responses:
+        201:
+          body:
+            application/json:
+              type: commonDataRef.ordersPatchResp
+
+                
+                  
+            
+      
+          
+                
+                
+                    
+
+                  
+                    
+              
+                      

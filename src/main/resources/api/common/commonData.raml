@@ -1,0 +1,29 @@
+#%RAML 1.0 Library
+usage:
+traits:
+  queryParams: !include /traits/orderQueryParams.raml
+  orderHeaders: !include /traits/orderHeaders.raml
+  orderIdHeaders: !include /traits/orderHeaders.raml
+  errResponses: !include /traits/errorResponseTraits.raml
+
+types:
+  order:
+    type: !include /dataTypes/ordersPostDataType.raml
+    examples: 
+      req: !include /examples/request/ordersPostRequest.json
+  orderPostResp:
+    example: !include /examples/responses/ordersPostResponse.json
+  orderGetResp:
+    example: !include  /examples/responses/ordersGetResponse.json   
+  ordersPatchResp:
+    example: !include /examples/responses/ordersPatchResp.json
+
+securitySchemes:
+  basicAuth: !include /secirity/basicAuthSecurity.raml
+      
+
+
+  
+      
+  
+  
